@@ -1,0 +1,19 @@
+{% extends 'layouts/layout.html' %}
+{% block title %}
+    List Post | {{ block.super }}
+{% endblock title %}
+{% block content %}
+    <h4><small>List Posts</small></h4>
+    <hr/>
+    {% if object_list %}
+        {% for post in object_list %}
+            <h2>{{post.name}}</h2>
+            <h5><span class="glyphicon glyphicon-time"></span> Post at {{ post.created_at }}</h5>
+            <p>{{ post.content }}</p>
+            <a  href="{% url 'posts:update' post.id %}">Edit</a>
+            <br><br>
+        {% endfor %}
+    {% else %}
+        There is no any post!
+    {% endif %}
+{% endblock content %}
